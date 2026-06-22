@@ -28,55 +28,18 @@ variable "vpc_name" {
   description = "VPC network & subnet name"
 }
 
-
 ###ssh vars
 
 variable "vms_ssh_public_root_key" {
   type        = string
-  default     = "<your_ssh_ed25519_key>"
+  default     = "ssh-rsa <here-is-my-key>"
   description = "ssh-keygen -t ed25519"
 }
 
-### vm_web vars (..... ..........)
-
-variable "vm_web_name" {
-  type        = string
-  default     = "netology-develop-platform-web"
-  description = "Name of the VM"
-}
-
-variable "vm_web_image_family" {
-  type        = string
-  default     = "ubuntu-2004-lts"
-  description = "OS image family"
-}
-
-variable "vm_web_platform_id" {
-  type        = string
-  default     = "standard-v3"
-  description = "Platform ID"
-}
-
-variable "vm_web_cores" {
-  type        = number
-  default     = 2
-  description = "Number of CPU cores"
-}
-
-variable "vm_web_memory" {
-  type        = number
-  default     = 1
-  description = "Amount of RAM in GB"
-}
-
-variable "vm_web_core_fraction" {
-  type        = number
-  default     = 20
-  description = "Core fraction"
-}
-
-variable "vm_web_preemptible" {
-  type        = bool
-  default     = true
-  description = "Whether the instance is preemptible"
-}
+#variable "common_metadata" {
+#  type = map(string)
+#  default = {
+#    "serial-port-enable" = "1"
+#    "ssh-keys"           = "ubuntu:${var.vms_ssh_public_root_key}"
+#  }
+#}
