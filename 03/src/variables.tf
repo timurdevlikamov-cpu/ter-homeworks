@@ -30,3 +30,42 @@ variable "vpc_name" {
   default     = "develop"
   description = "VPC network&subnet name"
 }
+
+variable "ssh_public_key_path" {
+  type        = string
+  description = "ssh-keygen -t ed25519"
+  default     = "~/.ssh/id_rsa_yandex.pub"
+}
+
+variable "each_vm" {
+  type = list(object({
+    vm_name = string
+    cpu     = number
+    ram     = number
+    disk_volume = number
+  }))
+  default = [ {
+      vm_name = "main"
+      cpu     = 2
+      ram     = 2
+      disk_volume = 10
+    },
+    {
+      vm_name = "replica"
+      cpu     = 2
+      ram     = 2
+      disk_volume = 10
+    }
+ ]
+}
+
+variable "vm_platform_id" {
+  type        = string
+  default     = "standard-v3"
+}
+
+locals {
+  ssh_public_key = file(var.ssh_public_key_path)
+}
+
+
