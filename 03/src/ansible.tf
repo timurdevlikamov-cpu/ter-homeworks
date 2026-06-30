@@ -38,6 +38,20 @@ resource "local_file" "ansible_inventory" {
             fqdn = "${yandex_compute_instance.storage_vm.name}.ru-central1.internal"
         }
     ]
+
+    # for Task-8
+    web_servers1 = [
+        for i in yandex_compute_instance.web : {
+            name = i.name
+            fqdn = "${i.name}.ru-central1.internal"
+            platform_id = i.platform_id # Добавьте это, если у ресурса есть такой атрибут
+            network_interface = [
+                {
+                    nat_ip_address = i.network_interface[0].nat_ip_address
+                }
+            ]
+        }
+    ]
     }
     )
 }

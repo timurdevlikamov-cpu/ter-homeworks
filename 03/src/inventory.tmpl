@@ -12,3 +12,8 @@ ${server.name} ansible_host=${server.ip} fqdn=${server.fqdn}
 %{ for server in storage_servers ~}
 ${server.name} ansible_host=${server.ip} fqdn=${server.fqdn}
 %{ endfor ~}
+
+[webservers1]
+%{~ for i in web_servers1 ~}
+${i["name"]} ansible_host=${i["network_interface"][0]["nat_ip_address"]} platform_id=${i["platform_id"]}
+%{~ endfor ~}
