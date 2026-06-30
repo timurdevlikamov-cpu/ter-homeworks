@@ -19,12 +19,20 @@ resource "random_password" "random_string" {
   min_numeric = 1
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 resource "docker_image"  "nginx" {
   name         = "nginx:latest"
   keep_locally = true
 }
 
+<<<<<<< Updated upstream
 resource "docker_container" "nginx" {
+=======
+resource "docker_container" "hello_world" {
+>>>>>>> Stashed changes
   image = docker_image.nginx.image_id
   name  = "example_${random_password.random_string.result}"
 
@@ -33,3 +41,7 @@ resource "docker_container" "nginx" {
     external = 9090
   }
 }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
