@@ -19,10 +19,17 @@ variable "default_zone" {
   default     = "ru-central1-a"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
-variable "default_cidr" {
-  type        = list(string)
-  default     = ["10.0.1.0/24"]
-  description = "https://cloud.yandex.ru/docs/vpc/operations/subnet-create"
+
+###network vars
+
+variable "env_name" {
+  type    = string
+  default = "develop"
+}
+
+variable "vpc_cidr" {
+  type    = string
+  default = "10.0.1.0/24"
 }
 
 variable "vpc_name" {
@@ -31,27 +38,56 @@ variable "vpc_name" {
   description = "VPC network&subnet name"
 }
 
-###common vars
+variable "subnet_a_cidr" {
+  type    = string
+  default = "10.0.1.0/24"
+}
 
+variable "subnet_b_cidr" {
+  type    = string
+  default = "10.0.2.0/24"
+}
+
+###vm vars
+variable "marketing_project_name" {
+  type    = string
+  default = "marketing"
+}
+
+variable "analytics_project_name" {
+  type    = string
+  default = "analytics"
+}
+
+variable "vm_owner" {
+  type    = string
+  default = "t.devlikamov"
+}
+
+###mysql
+variable "mysql_ha" {
+  type = bool
+  description = "Enable HA for mysql"
+  default = true
+}
+
+###ssh vars
 variable "vms_ssh_root_key" {
   type        = string
-  default     = "your_ssh_ed25519_key"
   description = "ssh-keygen -t ed25519"
+  default     = "~/.ssh/id_rsa_yandex.pub"
 }
 
-###example vm_web var
-variable "vm_web_name" {
-  type        = string
-  default     = "netology-develop-platform-web"
-  description = "example vm_web_ prefix"
+variable "s3_access_key" {
+  type = string
 }
 
-###example vm_db var
-variable "vm_db_name" {
-  type        = string
-  default     = "netology-develop-platform-db"
-  description = "example vm_db_ prefix"
+variable "s3_secret_key" {
+  type = string
 }
 
-
-
+variable "vault_token" {
+  description = "Vault access token"
+  type = string
+  sensitive = true
+}
