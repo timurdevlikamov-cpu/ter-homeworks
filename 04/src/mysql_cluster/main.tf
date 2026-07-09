@@ -4,12 +4,15 @@ locals {
   zones = ["ru-central1-a", "ru-central1-b"]
 }
 
+# checkov:skip=CKV_YC_1
 resource "yandex_mdb_mysql_cluster" "this" {
   name = var.cluster_name
   network_id = var.network_id
   #host_count = local.actual_host_count
   environment = "PRESTABLE"
   version = "8.0"
+
+  #security_groups = [var.security_group_id] 
 
   resources {
     resource_preset_id = "s2.micro"

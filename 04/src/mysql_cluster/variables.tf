@@ -36,3 +36,8 @@ variable "subnet_b_id" {
 #  type = number
 #  default = null
 #}
+
+variable "security_group_id" {
+  type = list(string)
+}
+

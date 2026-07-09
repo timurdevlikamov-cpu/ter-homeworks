@@ -32,21 +32,21 @@ variable "vpc_cidr" {
   default = "10.0.1.0/24"
 }
 
-variable "vpc_name" {
-  type        = string
-  default     = "develop"
-  description = "VPC network&subnet name"
-}
+#variable "vpc_name" {
+#  type        = string
+#  default     = "develop"
+#  description = "VPC network&subnet name"
+#}
 
-variable "subnet_a_cidr" {
-  type    = string
-  default = "10.0.1.0/24"
-}
+#variable "subnet_a_cidr" {
+#  type    = string
+#  default = "10.0.1.0/24"
+#}
 
-variable "subnet_b_cidr" {
-  type    = string
-  default = "10.0.2.0/24"
-}
+#variable "subnet_b_cidr" {
+#  type    = string
+#  default = "10.0.2.0/24"
+#}
 
 ###vm vars
 variable "marketing_project_name" {
@@ -54,10 +54,10 @@ variable "marketing_project_name" {
   default = "marketing"
 }
 
-variable "analytics_project_name" {
-  type    = string
-  default = "analytics"
-}
+#variable "analytics_project_name" {
+#  type    = string
+#  default = "analytics"
+#}
 
 variable "vm_owner" {
   type    = string
@@ -65,11 +65,11 @@ variable "vm_owner" {
 }
 
 ###mysql
-variable "mysql_ha" {
-  type = bool
-  description = "Enable HA for mysql"
-  default = true
-}
+#variable "mysql_ha" {
+#  type = bool
+#  description = "Enable HA for mysql"
+#  default = true
+#}
 
 ###ssh vars
 variable "vms_ssh_root_key" {
