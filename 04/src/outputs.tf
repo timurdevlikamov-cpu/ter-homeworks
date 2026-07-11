@@ -15,15 +15,15 @@ output "vpc_prod_info" {
     }
 }
 
-output "vault_example_key" {
-  value     = nonsensitive(data.vault_generic_secret.vault_example.data["test"])
-}
+#output "vault_example_key" {
+#  value     = nonsensitive(data.vault_generic_secret.vault_example.data["test"])
+#}
 
-output "new_secret_username" {
-    value = nonsensitive(jsondecode(vault_kv_secret_v2.new_secret.data_json)["username"])
-}
+#output "new_secret_username" {
+#    value = nonsensitive(jsondecode(vault_kv_secret_v2.new_secret.data_json)["username"])
+#}
 
-output "new_secret_all_data" {
-    value = nonsensitive(jsondecode(vault_kv_secret_v2.new_secret.data_json))
-}
+#output "new_secret_all_data" {
+#    value = nonsensitive(jsondecode(vault_kv_secret_v2.new_secret.data_json))
+#}
 

@@ -11,14 +11,14 @@ terraform {
       version = "~> 5.0"
     }
 
-    vault = {
-      source  = "hashicorp/vault"
-      version = "~> 3.0"
-    }
-    template = {
-      source  = "hashicorp/template"
-      version = "~> 2.2.0"
-    }
+#    vault = {
+#      source  = "hashicorp/vault"
+#      version = "~> 3.0"
+  #  }
+ #   template = {
+ #     source  = "hashicorp/template"
+ #     version = "~> 2.2.0"
+  #  }
 
   }
 
@@ -64,11 +64,11 @@ provider "aws" {
   secret_key = var.s3_secret_key
 }
 
-provider "vault" {
-  address = "http://127.0.0.1:8200"
-  token   = var.vault_token
-}
+#provider "vault" {
+#  address = "http://127.0.0.1:8200"
+#  token   = var.vault_token
+#}
 
-data "vault_generic_secret" "vault_example" {
-    path = "secret/example"
-  }
+#data "vault_generic_secret" "vault_example" {
+#    path = "secret/example"
+#  }

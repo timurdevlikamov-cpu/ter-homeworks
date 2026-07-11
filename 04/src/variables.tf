@@ -86,8 +86,66 @@ variable "s3_secret_key" {
   type = string
 }
 
-variable "vault_token" {
-  description = "Vault access token"
+#variable "vault_token" {
+#  description = "Vault access token"
+#  type = string
+#  sensitive = true
+#}
+
+variable "ip_address" {
   type = string
-  sensitive = true
+  description = "ip-address"
+  default = "192.168.0.1"
+  #default = "1920.1680.0.1"
+
+  validation {
+    ## Thanks google
+    condition = can(regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$", var.ip_address))
+    error_message = "Ошибка валидации ип-адреса"
+  }
+}
+
+variable "ip_list" {
+  type = list(string)
+  description = "ip-address list"
+  default = ["192.168.0.1", "1.1.1.1", "127.0.0.1"]
+  #default = ["192.168.0.1", "1.1.1.1", "1270.0.0.1"]
+
+  validation {
+    condition = alltrue([
+      ## Thanks again
+      for ip in var.ip_list : can(regex("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$", ip))
+    ])
+    error_message = "Ошибка: один из ип-адресов wrong"
+  }
+}
+
+variable "lowercase_only" {
+  type = string
+  description = "any lower case string"
+  default = "i'm devops"
+  #default = "I'm a devops"
+
+  validation {
+    condition = !can(regex("[A-Z]", var.lowercase_only))
+    error_message = "Error: only lower case allowed, buddy"
+  }
+}
+
+variable "in_the_end_there_can_be_only_one" {
+  description = "Who is better Connor or Duncan?"
+  type = object({
+    Dunkan = optional(bool)
+    Connor = optional(bool)
+  })
+
+  default = {
+    Dunkan = true
+    Connor = false
+  }
+
+  validation {
+    error_message = "There can be only one MacLeod"
+    condition = var.in_the_end_there_can_be_only_one.Dunkan != var.in_the_end_there_can_be_only_one.Connor
+  }
 }

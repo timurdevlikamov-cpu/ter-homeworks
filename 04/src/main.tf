@@ -60,13 +60,13 @@ module "s3_bucket" {
 }
 */
 
-resource "vault_kv_secret_v2" "new_secret" {
-  mount = "secret"
-  name = "my-terraform-secret"
-
-  data_json = jsonencode({
-    username = "admin"
-    password = "v3ry-StroNg-P4ssw0rd-With-Lots-Of-Chars-!@#$"
-    api_key  = "zX9!pQ2@mN5#vB8$kL1%jH4^rT7*yU0(iO3)pA6_sD9+fG2=hJ5"
-  })
-}
+#resource "vault_kv_secret_v2" "new_secret" {
+#  mount = "secret"
+#  name = "my-terraform-secret"
+#
+#  data_json = jsonencode({
+#    username = "admin"
+#    password = "v3ry-StroNg-P4ssw0rd-With-Lots-Of-Chars-!@#$"
+#    api_key  = "zX9!pQ2@mN5#vB8$kL1%jH4^rT7*yU0(iO3)pA6_sD9+fG2=hJ5"
+#  })
+#}
