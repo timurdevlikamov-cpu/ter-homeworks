@@ -70,3 +70,8 @@ module "s3_bucket" {
 #    api_key  = "zX9!pQ2@mN5#vB8$kL1%jH4^rT7*yU0(iO3)pA6_sD9+fG2=hJ5"
 #  })
 #}
+
+terraform {
+  backend "s3" {
+  }
+}
