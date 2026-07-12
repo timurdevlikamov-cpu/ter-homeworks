@@ -1,4 +1,3 @@
-
 module "vpc_dev" {
   source = "./vpc"
   env_name = var.env_name
@@ -30,7 +29,7 @@ data "template_file" "cloudinit" {
 ### marketing module
 
 module "marketing_vm" {
-  source      = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source      = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=4d05fab"
   env_name    = "develop"
   network_id = module.vpc_dev.network_id
   subnet_ids = [module.vpc_dev.subnet_ids[var.vpc_cidr]]
@@ -51,26 +50,6 @@ module "marketing_vm" {
   }
 }
 
-/*
-module "mysql_cluster_example" {
-  source = "./mysql_cluster"
-  cluster_name = "${var.env_name}-mysql-cluster"
-  network_id = module.vpc_dev.network_id
-  #ha = false
-  ha = true
-
-  subnet_a_id  = module.vpc_dev.subnet_ids["10.0.1.0/24"]
-  subnet_b_id  = module.vpc_dev.subnet_ids["10.0.2.0/24"]
-}
-
-module "mysql_db_example" {
-  source = "./mysql_db"
-  cluster_id = module.mysql_cluster_example.cluster_id
-  database_name = "exmpl_database"
-  user_name = "exmpl_user"
-  user_password = "very-strong-pass-1q2w3e"
-}
-*/
 
 /*
 module "s3_bucket" {
@@ -81,13 +60,18 @@ module "s3_bucket" {
 }
 */
 
-resource "vault_kv_secret_v2" "new_secret" {
-  mount = "secret"
-  name = "my-terraform-secret"
+#resource "vault_kv_secret_v2" "new_secret" {
+#  mount = "secret"
+#  name = "my-terraform-secret"
+#
+#  data_json = jsonencode({
+#    username = "admin"
+#    password = "v3ry-StroNg-P4ssw0rd-With-Lots-Of-Chars-!@#$"
+#    api_key  = "zX9!pQ2@mN5#vB8$kL1%jH4^rT7*yU0(iO3)pA6_sD9+fG2=hJ5"
+#  })
+#}
 
-  data_json = jsonencode({
-    username = "admin"
-    password = "super-secret-password-123"
-    api_key  = "abcde-12345-fghij"
-  })
+terraform {
+  backend "s3" {
+  }
 }
